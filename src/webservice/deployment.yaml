@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: newdock
+  namespace: default
+  labels:
+    app: newdock
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: newdock
+  template:
+    metadata:
+      labels:
+        app: newdock
+    spec:
+      containers:
+       - name: newdock
+         image: anishjr/my-docker-go
+         imagePullPolicy: IfNotPresent
+         securityContext:
+            privileged: false
+         ports:
+            - containerPort: 5000
+
+
+    
